@@ -1,8 +1,7 @@
 public class Commands {
     private static int rollValue, lp, mp, hp, lk, mk, hk, lm, mm, hm;
-    private static Character player;
     private static String attackType;
-    private static String lmh;
+    private static String lmh, lmhOutput;
 
     public static int roll(int index){
         rollValue = (int) (Math.random()*index)+1;
@@ -93,6 +92,33 @@ public class Commands {
 
         }
         return lmh;
+    }
+
+    public void getlmhOuput(String lmh){
+        switch(lmh){
+            case "LightPunch":
+                lmhOutput = " does a quick jab!";
+            case "MediumPunch":
+                lmhOutput = " goes for the haymaker!";
+            case "HeavyPunch":
+                lmhOutput = " winds up with an uppercut!";
+            case "LightKick":
+                lmhOutput = " does a snap kick";
+            case "MediumKick":
+                lmhOutput = " goes for the roundhouse!";
+            case "HeavyKick":
+                lmhOutput = " unleashes a powerful side kick";
+            case "LightMagic":
+                lmhOutput = " throws a magic missile";
+            case "MediumMagic":
+                lmhOutput = " charges up for a fireball!";
+            case "HeavyMagic":
+                lmhOutput = " unleashes a beam of energy!";
+            default:
+                lmhOutput = "does nothing!";
+        }
+
+        System.out.println(lmhOutput);
     }
 
 }
