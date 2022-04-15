@@ -2,6 +2,13 @@ public class Commands {
     private static int rollValue, lp, mp, hp, lk, mk, hk, lm, mm, hm;
     private static String attackType;
     private static String lmh, lmhOutput;
+    static final int D20 = 20;
+    static final int D12 = 12;
+    static final int D10 = 10;
+    static final int D8 = 8;
+    static final int D6 = 6;
+    static final int D4 = 4;
+    static final int D2 = 2;
 
     public static int roll(int index){
         rollValue = (int) (Math.random()*index)+1;

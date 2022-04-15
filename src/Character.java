@@ -1,45 +1,47 @@
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class Character {
     private String name, fightStyle;
-    private int lightPunchAttack, mediumPunchAttack, heavyPunchAttack;
-    private int lightPunchDefense, mediumPunchDefense, heavyPunchDefense;
-    private int lightKickAttack, mediumKickAttack, heavyKickAttack;
-    private int lightKickDefense, mediumKickDefense, heavyKickDefense;
-    private int lightMagicAttack, mediumMagicAttack, heavyMagicAttack;
-    private int lightMagicDefense, mediumMagicDefense, heavyMagicDefense;
+    private int lightPunchAttack, mediumPunchAttack, heavyPunchAttack, punchBlock;
+    private int lightKickAttack, mediumKickAttack, heavyKickAttack, kickBlock;
+    private int lightMagicAttack, mediumMagicAttack, heavyMagicAttack, magicBlock;
+    private int win, draw, loss;
     private int dodgeBlock;
     private int[] statblock;
     private int[] frequency;
     private int hitPoints, tempHitpoints;
+    private int stamina;
+    private ArrayList<String> titles = new ArrayList<String>();
 
-    public Character(String name, String fightStyle, int[] frequency, int[] statblock, int hitPoints, int dodgeBlock){
+    public Character(String name, String fightStyle, int hitPoints, int stamina, int dodgeBlock, int[] frequency, int[] statblock, ArrayList<String> titles) {
         this.name = name;
         this.fightStyle = fightStyle;
         this.hitPoints = hitPoints;
+        this.stamina = stamina;
         this.tempHitpoints = hitPoints;
+        this.dodgeBlock = dodgeBlock;
+        this.titles = titles;
         this.frequency = frequency;
 
         lightPunchAttack = statblock[0];
         mediumPunchAttack = statblock[1];
         heavyPunchAttack = statblock[2];
-        lightPunchDefense = statblock[3];
-        mediumPunchDefense = statblock[4];
-        heavyPunchDefense = statblock[5];
+        punchBlock = statblock[3];
 
-        lightKickAttack = statblock[6];
-        mediumKickAttack = statblock[7];
-        heavyKickAttack = statblock[8];
-        lightKickDefense = statblock[9];
-        mediumKickDefense = statblock[10];
-        heavyKickDefense = statblock[11];
+        lightKickAttack = statblock[4];
+        mediumKickAttack = statblock[5];
+        heavyKickAttack = statblock[6];
+        kickBlock = statblock[7];
 
-        lightMagicAttack = statblock[12];
-        mediumMagicAttack = statblock[13];
-        heavyMagicAttack = statblock[14];
-        lightMagicDefense = statblock[15];
-        mediumMagicDefense= statblock[16];
-        heavyMagicDefense = statblock[17];
+        lightMagicAttack = statblock[8];
+        mediumMagicAttack = statblock[9];
+        heavyMagicAttack = statblock[10];
+        magicBlock = statblock[11];
 
-        this.dodgeBlock = dodgeBlock;
+        win = 0;
+        draw = 0;
+        loss = 0;
 
     }
 
@@ -83,28 +85,12 @@ public class Character {
         this.heavyPunchAttack = heavyPunchAttack;
     }
 
-    public int getLightPunchDefense() {
-        return lightPunchDefense;
+    public int getPunchBlock() {
+        return punchBlock;
     }
 
-    public void setLightPunchDefense(int lightPunchDefense) {
-        this.lightPunchDefense = lightPunchDefense;
-    }
-
-    public int getMediumPunchDefense() {
-        return mediumPunchDefense;
-    }
-
-    public void setMediumPunchDefense(int mediumPunchDefense) {
-        this.mediumPunchDefense = mediumPunchDefense;
-    }
-
-    public int getHeavyPunchDefense() {
-        return heavyPunchDefense;
-    }
-
-    public void setHeavyPunchDefense(int heavyPunchDefense) {
-        this.heavyPunchDefense = heavyPunchDefense;
+    public void setPunchBlock(int punchBlock) {
+        this.punchBlock = punchBlock;
     }
 
     public int getLightKickAttack() {
@@ -131,28 +117,12 @@ public class Character {
         this.heavyKickAttack = heavyKickAttack;
     }
 
-    public int getLightKickDefense() {
-        return lightKickDefense;
+    public int getKickBlock() {
+        return kickBlock;
     }
 
-    public void setLightKickDefense(int lightKickDefense) {
-        this.lightKickDefense = lightKickDefense;
-    }
-
-    public int getMediumKickDefense() {
-        return mediumKickDefense;
-    }
-
-    public void setMediumKickDefense(int mediumKickDefense) {
-        this.mediumKickDefense = mediumKickDefense;
-    }
-
-    public int getHeavyKickDefense() {
-        return heavyKickDefense;
-    }
-
-    public void setHeavyKickDefense(int heavyKickDefense) {
-        this.heavyKickDefense = heavyKickDefense;
+    public void setKickBlock(int kickBlock) {
+        this.kickBlock = kickBlock;
     }
 
     public int getLightMagicAttack() {
@@ -179,28 +149,12 @@ public class Character {
         this.heavyMagicAttack = heavyMagicAttack;
     }
 
-    public int getLightMagicDefense() {
-        return lightMagicDefense;
+    public int getMagicBlock() {
+        return magicBlock;
     }
 
-    public void setLightMagicDefense(int lightMagicDefense) {
-        this.lightMagicDefense = lightMagicDefense;
-    }
-
-    public int getMediumMagicDefense() {
-        return mediumMagicDefense;
-    }
-
-    public void setMediumMagicDefense(int mediumMagicDefense) {
-        this.mediumMagicDefense = mediumMagicDefense;
-    }
-
-    public int getHeavyMagicDefense() {
-        return heavyMagicDefense;
-    }
-
-    public void setHeavyMagicDefense(int heavyMagicDefense) {
-        this.heavyMagicDefense = heavyMagicDefense;
+    public void setMagicBlock(int magicBlock) {
+        this.magicBlock = magicBlock;
     }
 
     public int getDodgeBlock() {
@@ -241,5 +195,24 @@ public class Character {
 
     public void setTempHitpoints(int tempHitpoints) {
         this.tempHitpoints = tempHitpoints;
+    }
+
+    public int getStamina() {
+        return stamina;
+    }
+
+    public void setStamina(int stamina) {
+        this.stamina = stamina;
+    }
+
+    public String toString(){
+        return "Name: " + name + "\nFight Style: " + fightStyle + "\nHP: " + hitPoints + "\tStamina: " + stamina +
+                "Punch: " + lightPunchAttack + "-" + mediumPunchAttack + "-" + heavyPunchAttack + "-" + punchBlock +
+                "\nKick: " + lightKickAttack + "-" + mediumKickAttack + "-" + heavyKickAttack + "-" + kickBlock +
+                "\nMagic: " + lightMagicAttack + "-" + mediumMagicAttack + "-" + heavyMagicAttack + "-" + magicBlock +
+                "\nDodge/Block: " + dodgeBlock +
+                "\nW/D/L: " + win + "-" + draw + "-" + loss +
+                "\nTitles: " + titles;
+
     }
 }
