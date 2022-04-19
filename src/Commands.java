@@ -1,7 +1,8 @@
 public class Commands {
-    private static int rollValue, lp, mp, hp, lk, mk, hk, lm, mm, hm;
+    private static int rollValue, lp, mp, hp, lk, mk, hk, lm, mm, hm, damage;
     private static String attackType;
     private static String lmh, lmhOutput;
+    private static boolean isCrit;
     static final int D20 = 20;
     static final int D12 = 12;
     static final int D10 = 10;
@@ -15,6 +16,96 @@ public class Commands {
         return rollValue;
     }
 
+    public static int dealDamage(String lmh, boolean isCrit){
+        switch(lmh){
+            case "LightPunch":
+                damage = roll(D4);
+                if(isCrit)
+                    damage *= 2;
+            case "MediumPunch":
+                damage = roll(D6);
+                if(isCrit)
+                    damage *= 2;
+            case "HeavyPunch":
+                damage = roll(D8);
+                if(isCrit)
+                    damage *= 2;
+            case "LightKick":
+                damage = roll(D4);
+                if(isCrit)
+                    damage *= 2;
+            case "MediumKick":
+                damage = roll(D6);
+                if(isCrit)
+                    damage *= 2;
+            case "HeavyKick":
+                damage = roll(D8);
+                if(isCrit)
+                    damage *= 2;
+            case "LightMagic":
+                damage = roll(D4);
+                if(isCrit)
+                    damage *= 2;
+            case "MediumMagic":
+                damage = roll(D6);
+                if(isCrit)
+                    damage *= 2;
+            case "HeavyMagic":
+                damage = roll(D8);
+                if(isCrit)
+                    damage *= 2;
+        }
+        return damage;
+    }
+
+    public boolean isHit(String lmh, Character player1, Character player2){
+            int roll1 = roll(D20);
+            int roll2 = roll(D20);
+            if(roll1 == 20)
+                isCrit = true;
+            else
+                isCrit = false;
+        switch(lmh){
+            case "LightPunch":
+                if((roll1 + player1.getLightPunchAttack()) >= (roll2 + player2.getPunchBlock()) || isCrit){
+                    return true;
+                }
+            case "MediumPunch":
+                if((roll1 + player1.getMediumPunchAttack()) >= (roll2 + player2.getPunchBlock()) || isCrit){
+                    return true;
+                }
+            case "HeavyPunch":
+                if((roll1 + player1.getHeavyPunchAttack()) >= (roll2 + player2.getPunchBlock()) || isCrit){
+                    return true;
+                }
+            case "LightKick":
+                if((roll1 + player1.getLightKickAttack()) >= (roll2 + player2.getKickBlock()) || isCrit){
+                    return true;
+                }
+            case "MediumKick":
+                if((roll1 + player1.getMediumKickAttack()) >= (roll2 + player2.getKickBlock()) || isCrit){
+                    return true;
+                }
+            case "HeavyKick":
+                if((roll1 + player1.getHeavyKickAttack()) >= (roll2 + player2.getKickBlock()) || isCrit){
+                    return true;
+                }
+            case "LightMagic":
+                if((roll1 + player1.getLightMagicAttack()) >= (roll2 + player2.getMagicBlock()) || isCrit){
+                    return true;
+                }
+            case "MediumMagic":
+                if((roll1 + player1.getMediumMagicAttack()) >= (roll2 + player2.getMagicBlock()) || isCrit){
+                    return true;
+                }
+            case "HeavyMagic":
+                if((roll1 + player1.getHeavyMagicAttack()) >= (roll2 + player2.getMagicBlock()) || isCrit){
+                    return true;
+                }
+        }
+
+        return false;
+    }
     public static String getAttackType(Character player){
         rollValue = roll(10);
 
