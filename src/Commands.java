@@ -16,45 +16,33 @@ public class Commands {
         return rollValue;
     }
 
-    public static int dealDamage(String lmh, boolean isCrit){
+    public static int dealDamage(String lmh, boolean isCrit, Character player){
         switch(lmh){
             case "LightPunch":
-                damage = roll(D4);
-                if(isCrit)
-                    damage *= 2;
+                    damage = roll(D4) + (player.getLightPunchAttack() - 3);
             case "MediumPunch":
-                damage = roll(D6);
-                if(isCrit)
-                    damage *= 2;
+                damage = roll(D6) + (player.getMediumPunchAttack() - 3);
             case "HeavyPunch":
-                damage = roll(D8);
-                if(isCrit)
-                    damage *= 2;
+                damage = roll(D8) + (player.getHeavyPunchAttack() - 3);
             case "LightKick":
-                damage = roll(D4);
-                if(isCrit)
-                    damage *= 2;
+                damage = roll(D4) + (player.getLightKickAttack() - 3);
             case "MediumKick":
-                damage = roll(D6);
-                if(isCrit)
-                    damage *= 2;
+                damage = roll(D6) + (player.getMediumKickAttack() - 3);
             case "HeavyKick":
-                damage = roll(D8);
-                if(isCrit)
-                    damage *= 2;
+                damage = roll(D8) + (player.getHeavyKickAttack() - 3);
             case "LightMagic":
-                damage = roll(D4);
-                if(isCrit)
-                    damage *= 2;
+                damage = roll(D4) + (player.getLightMagicAttack() - 3);
             case "MediumMagic":
-                damage = roll(D6);
-                if(isCrit)
-                    damage *= 2;
+                damage = roll(D6) + (player.getMediumMagicAttack() - 3);
             case "HeavyMagic":
-                damage = roll(D8);
-                if(isCrit)
-                    damage *= 2;
+                damage = roll(D8) + (player.getHeavyMagicAttack() - 3);
         }
+
+        if(isCrit)
+            damage *= 2;
+        if(damage < 0)
+            damage = 0;
+
         return damage;
     }
 
