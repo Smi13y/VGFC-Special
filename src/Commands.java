@@ -16,30 +16,68 @@ public class Commands {
         return rollValue;
     }
 
+    public static int dodgeOrBlock(int damage, String lmh, Character player){
+        rollValue = roll(D10);
+
+        if(rollValue <= player.getDodgeBlock()){
+            rollValue = roll(D2);
+            if(rollValue == 1){
+                damage = damage * 2;
+            } else{
+                damage = 0;
+            }
+        } else{
+            String attack = lmh;
+            if(attack.equals("LightPunch") || attack.equals("LightKick") || attack.equals("LightMagic")){
+                damage = damage - roll(D2);
+            } else if(attack.equals("MediumPunch") || attack.equals("MediumKick") || attack.equals("MediumMagic")){
+                damage = damage - roll(D4);
+            } else{
+                damage = damage - roll(D6);
+            }
+        }
+        return damage;
+    }
     public static int dealDamage(String lmh, boolean isCrit, Character player){
         switch(lmh){
             case "LightPunch":
-                    damage = roll(D4) + (player.getLightPunchAttack() - 3);
+                damage = roll(D4) + (player.getLightPunchAttack() - 3);
+                if(isCrit)
+                    damage = 2 * (4 + player.getLightPunchAttack() - 3);
             case "MediumPunch":
                 damage = roll(D6) + (player.getMediumPunchAttack() - 3);
+                if(isCrit)
+                    damage = 2 * (6 + player.getMediumPunchAttack() - 3);
             case "HeavyPunch":
                 damage = roll(D8) + (player.getHeavyPunchAttack() - 3);
+                if(isCrit)
+                    damage = 2 * (8 + player.getHeavyPunchAttack() - 3);
             case "LightKick":
                 damage = roll(D4) + (player.getLightKickAttack() - 3);
+                if(isCrit)
+                    damage = 2 * (4 + player.getLightKickAttack() - 3);
             case "MediumKick":
                 damage = roll(D6) + (player.getMediumKickAttack() - 3);
+                if(isCrit)
+                    damage = 2 * (6 + player.getMediumKickAttack() - 3);
             case "HeavyKick":
                 damage = roll(D8) + (player.getHeavyKickAttack() - 3);
+                if(isCrit)
+                    damage = 2 * (8 + player.getHeavyKickAttack() - 3);
             case "LightMagic":
                 damage = roll(D4) + (player.getLightMagicAttack() - 3);
+                if(isCrit)
+                    damage = 2 * (4 + player.getLightMagicAttack() - 3);
             case "MediumMagic":
                 damage = roll(D6) + (player.getMediumMagicAttack() - 3);
+                if(isCrit)
+                    damage = 2 * (6 + player.getMediumMagicAttack() - 3);
             case "HeavyMagic":
                 damage = roll(D8) + (player.getHeavyMagicAttack() - 3);
+                if(isCrit)
+                    damage = 2 * (8 + player.getHeavyMagicAttack() - 3);
         }
 
-        if(isCrit)
-            damage *= 2;
         if(damage < 0)
             damage = 0;
 
@@ -55,39 +93,39 @@ public class Commands {
                 isCrit = false;
         switch(lmh){
             case "LightPunch":
-                if((roll1 + player1.getLightPunchAttack()) >= (roll2 + player2.getPunchBlock()) || isCrit){
+                if(((roll1 + player1.getLightPunchAttack()) >= (roll2 + player2.getPunchBlock()) || isCrit) && player1.getTempStamina() >= 1){
                     return true;
                 }
             case "MediumPunch":
-                if((roll1 + player1.getMediumPunchAttack()) >= (roll2 + player2.getPunchBlock()) || isCrit){
+                if(((roll1 + player1.getMediumPunchAttack()) >= (roll2 + player2.getPunchBlock()) || isCrit) && player1.getTempStamina() >= 3){
                     return true;
                 }
             case "HeavyPunch":
-                if((roll1 + player1.getHeavyPunchAttack()) >= (roll2 + player2.getPunchBlock()) || isCrit){
+                if(((roll1 + player1.getHeavyPunchAttack()) >= (roll2 + player2.getPunchBlock()) || isCrit) && player1.getTempStamina() >= 5){
                     return true;
                 }
             case "LightKick":
-                if((roll1 + player1.getLightKickAttack()) >= (roll2 + player2.getKickBlock()) || isCrit){
+                if(((roll1 + player1.getLightKickAttack()) >= (roll2 + player2.getKickBlock()) || isCrit) && player1.getTempStamina() >= 1){
                     return true;
                 }
             case "MediumKick":
-                if((roll1 + player1.getMediumKickAttack()) >= (roll2 + player2.getKickBlock()) || isCrit){
+                if(((roll1 + player1.getMediumKickAttack()) >= (roll2 + player2.getKickBlock()) || isCrit) && player1.getTempStamina() >= 3){
                     return true;
                 }
             case "HeavyKick":
-                if((roll1 + player1.getHeavyKickAttack()) >= (roll2 + player2.getKickBlock()) || isCrit){
+                if(((roll1 + player1.getHeavyKickAttack()) >= (roll2 + player2.getKickBlock()) || isCrit) && player1.getTempStamina() >= 5){
                     return true;
                 }
             case "LightMagic":
-                if((roll1 + player1.getLightMagicAttack()) >= (roll2 + player2.getMagicBlock()) || isCrit){
+                if(((roll1 + player1.getLightMagicAttack()) >= (roll2 + player2.getMagicBlock()) || isCrit) && player1.getTempMana() >= 1){
                     return true;
                 }
             case "MediumMagic":
-                if((roll1 + player1.getMediumMagicAttack()) >= (roll2 + player2.getMagicBlock()) || isCrit){
+                if(((roll1 + player1.getMediumMagicAttack()) >= (roll2 + player2.getMagicBlock()) || isCrit) && player1.getTempMana() >= 3){
                     return true;
                 }
             case "HeavyMagic":
-                if((roll1 + player1.getHeavyMagicAttack()) >= (roll2 + player2.getMagicBlock()) || isCrit){
+                if(((roll1 + player1.getHeavyMagicAttack()) >= (roll2 + player2.getMagicBlock()) || isCrit) && player1.getTempMana() >= 5){
                     return true;
                 }
         }
