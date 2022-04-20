@@ -11,15 +11,19 @@ public class Character {
     private int[] statblock;
     private int[] frequency;
     private int hitPoints, tempHitpoints;
-    private int stamina;
+    private int stamina, tempStamina;
+    private int mana, tempMana;
     private ArrayList<String> titles = new ArrayList<String>();
 
-    public Character(String name, String fightStyle, int hitPoints, int stamina, int dodgeBlock, int[] frequency, int[] statblock, ArrayList<String> titles) {
+    public Character(String name, String fightStyle, int hitPoints, int stamina, int mana,int dodgeBlock, int[] frequency, int[] statblock, ArrayList<String> titles) {
         this.name = name;
         this.fightStyle = fightStyle;
         this.hitPoints = hitPoints;
         this.stamina = stamina;
+        this.mana = mana;
         this.tempHitpoints = hitPoints;
+        this.tempStamina = stamina;
+        this.tempMana = mana;
         this.dodgeBlock = dodgeBlock;
         this.titles = titles;
         this.frequency = frequency;
@@ -157,6 +161,30 @@ public class Character {
         this.magicBlock = magicBlock;
     }
 
+    public int getWin() {
+        return win;
+    }
+
+    public void setWin(int win) {
+        this.win = win;
+    }
+
+    public int getDraw() {
+        return draw;
+    }
+
+    public void setDraw(int draw) {
+        this.draw = draw;
+    }
+
+    public int getLoss() {
+        return loss;
+    }
+
+    public void setLoss(int loss) {
+        this.loss = loss;
+    }
+
     public int getDodgeBlock() {
         return dodgeBlock;
     }
@@ -203,6 +231,38 @@ public class Character {
 
     public void setStamina(int stamina) {
         this.stamina = stamina;
+    }
+
+    public int getTempStamina() {
+        return tempStamina;
+    }
+
+    public void setTempStamina(int tempStamina) {
+        this.tempStamina = tempStamina;
+    }
+
+    public int getMana() {
+        return mana;
+    }
+
+    public void setMana(int mana) {
+        this.mana = mana;
+    }
+
+    public int getTempMana() {
+        return tempMana;
+    }
+
+    public void setTempMana(int tempMana) {
+        this.tempMana = tempMana;
+    }
+
+    public ArrayList<String> getTitles() {
+        return titles;
+    }
+
+    public void setTitles(ArrayList<String> titles) {
+        this.titles = titles;
     }
 
     public String toString(){
