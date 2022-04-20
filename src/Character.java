@@ -266,8 +266,8 @@ public class Character {
     }
 
     public String toString(){
-        return "Name: " + name + "\nFight Style: " + fightStyle + "\nHP: " + hitPoints + "\tStamina: " + stamina +
-                "Punch: " + lightPunchAttack + "-" + mediumPunchAttack + "-" + heavyPunchAttack + "-" + punchBlock +
+        return "Name: " + name + "\nFight Style: " + fightStyle + "\nHP: " + hitPoints + "\tStamina: " + stamina + "\tMana: " + mana +
+                "\nPunch: " + lightPunchAttack + "-" + mediumPunchAttack + "-" + heavyPunchAttack + "-" + punchBlock +
                 "\nKick: " + lightKickAttack + "-" + mediumKickAttack + "-" + heavyKickAttack + "-" + kickBlock +
                 "\nMagic: " + lightMagicAttack + "-" + mediumMagicAttack + "-" + heavyMagicAttack + "-" + magicBlock +
                 "\nDodge/Block: " + dodgeBlock +
