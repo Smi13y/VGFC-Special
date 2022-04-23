@@ -15,6 +15,9 @@ public class Commands {
     private static final int medium = 3;
     private static final int heavy = 5;
 
+    //TODO create regenerateHitPoints()
+    //TODO create regenerateStamina()
+    //TODO create regenerateMana()
     public static int roll(int index){
         rollValue = (int) (Math.random()*index)+1;
         return rollValue;
