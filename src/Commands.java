@@ -1,7 +1,7 @@
 public class Commands {
-    private static int rollValue, lp, mp, hp, lk, mk, hk, lm, mm, hm, damage;
+    private static int rollValue, damage;
     private static String attackType;
-    private static String lmh, lmhOutput;
+    private static String lmh;
     private static boolean isCrit;
     static final int D20 = 20;
     static final int D12 = 12;
@@ -9,36 +9,98 @@ public class Commands {
     static final int D8 = 8;
     static final int D6 = 6;
     static final int D4 = 4;
+    static final int D3 = 3;
     static final int D2 = 2;
+    private static final int light = 1;
+    private static final int medium = 3;
+    private static final int heavy = 5;
 
     public static int roll(int index){
         rollValue = (int) (Math.random()*index)+1;
         return rollValue;
     }
+    public static int rollW0(int index){
+        rollValue = (int) (Math.random()*index)+1;
+        return rollValue;
+    }
 
-    public static int dodgeOrBlock(int damage, String lmh, Character player){
+    public boolean isKO(Character player){
+        return player.getTempHitpoints() <= 0;
+    }
+
+    public static void dealDamage(Character player1, Character player2){
+        String tempLMH = determineLMH(player1);
+        boolean hit = isHit(tempLMH, player1, player2);
+        int d;
+        int newD;
+
+        System.out.println(player1.getName() + " goes for the attack.");
+        getlmhOuput(tempLMH);
+
+        if(hit) {
+            d = calcDamage(tempLMH, isCrit, player1);
+           newD = dodgeOrBlock(d, tempLMH, player2);
+            player2.setTempHitpoints(player2.getTempHitpoints()-newD);
+            System.out.println(player1.getName() + " dealt " + newD + " damage to " + player2.getName());
+        } else{
+            System.out.println(player1.getName() + " misses!");
+        }
+
+    }
+
+
+    public static int dodgeOrBlock(int damage, String lmh, Character player) {
         rollValue = roll(D10);
-
-        if(rollValue <= player.getDodgeBlock()){
+        int r;
+        if(isCrit){
+            System.out.println(player.getName() + " takes the full hit!");
+            return damage;
+        }else if(rollValue <= player.getDodgeBlock()){
             rollValue = roll(D2);
             if(rollValue == 1){
                 damage = damage * 2;
             } else{
                 damage = 0;
+                System.out.println(player.getName() + " dodges out of the way!");
             }
         } else{
-            String attack = lmh;
-            if(attack.equals("LightPunch") || attack.equals("LightKick") || attack.equals("LightMagic")){
-                damage = damage - roll(D2);
-            } else if(attack.equals("MediumPunch") || attack.equals("MediumKick") || attack.equals("MediumMagic")){
-                damage = damage - roll(D4);
+            rollValue = roll(D3);
+            if(rollValue == 3) {
+                if (lmh.equals("LightPunch") || lmh.equals("LightKick") || lmh.equals("LightMagic")) {
+                    System.out.println(player.getName() + " tries to block!");
+                    r = rollW0(D2);
+                    if (r > 0) {
+                        System.out.println(player.getName() + " blocks " + r + " damage!");
+                    } else {
+                        System.out.println(player.getName() + " takes the full hit!");
+                    }
+                    damage = damage - r;
+                } else if (lmh.equals("MediumPunch") || lmh.equals("MediumKick") || lmh.equals("MediumMagic")) {
+                    System.out.println(player.getName() + " tries to block!");
+                    r = rollW0(D4);
+                    if (r > 0) {
+                        System.out.println(player.getName() + " blocks " + r + " damage!");
+                    } else {
+                        System.out.println(player.getName() + " takes the full hit!");
+                    }
+                    damage = damage - r;
+                } else {
+                    System.out.println(player.getName() + " tries to block!");
+                    r = rollW0(D6);
+                    if (r > 0) {
+                        System.out.println(player.getName() + " blocks " + r + " damage!");
+                    } else {
+                        System.out.println(player.getName() + " takes the full hit!");
+                    }
+                    damage = damage - r;
+                }
             } else{
-                damage = damage - roll(D6);
+                System.out.println(player.getName() + " takes the full hit!");
             }
         }
         return damage;
     }
-    public static int dealDamage(String lmh, boolean isCrit, Character player){
+    public static int calcDamage(String lmh, boolean isCrit, Character player){
         switch(lmh){
             case "LightPunch":
                 damage = roll(D4) + (player.getLightPunchAttack() - 3);
@@ -84,52 +146,69 @@ public class Commands {
         return damage;
     }
 
-    public boolean isHit(String lmh, Character player1, Character player2){
+    public static boolean isHit(String lmh, Character player1, Character player2){
             int roll1 = roll(D20);
             int roll2 = roll(D20);
-            if(roll1 == 20)
+            if(roll1 == 20) {
                 isCrit = true;
-            else
+                System.out.println(player1.getName() + " lands a critical hit!");
+            }else
                 isCrit = false;
         switch(lmh){
             case "LightPunch":
-                if(((roll1 + player1.getLightPunchAttack()) >= (roll2 + player2.getPunchBlock()) || isCrit) && player1.getTempStamina() >= 1){
+                if(((roll1 + player1.getLightPunchAttack()) >= (roll2 + player2.getPunchBlock()) || isCrit) && player1.getTempStamina() >= light){
+                    player1.setTempStamina(player1.getStamina() - light);
                     return true;
                 }
             case "MediumPunch":
-                if(((roll1 + player1.getMediumPunchAttack()) >= (roll2 + player2.getPunchBlock()) || isCrit) && player1.getTempStamina() >= 3){
+                if(((roll1 + player1.getMediumPunchAttack()) >= (roll2 + player2.getPunchBlock()) || isCrit) && player1.getTempStamina() >= medium){
+                    player1.setTempStamina(player1.getStamina() - medium);
                     return true;
                 }
             case "HeavyPunch":
-                if(((roll1 + player1.getHeavyPunchAttack()) >= (roll2 + player2.getPunchBlock()) || isCrit) && player1.getTempStamina() >= 5){
+                if(((roll1 + player1.getHeavyPunchAttack()) >= (roll2 + player2.getPunchBlock()) || isCrit) && player1.getTempStamina() >= heavy){
+                    player1.setTempStamina(player1.getStamina() - heavy);
                     return true;
                 }
             case "LightKick":
-                if(((roll1 + player1.getLightKickAttack()) >= (roll2 + player2.getKickBlock()) || isCrit) && player1.getTempStamina() >= 1){
+                if(((roll1 + player1.getLightKickAttack()) >= (roll2 + player2.getKickBlock()) || isCrit) && player1.getTempStamina() >= light){
+                    player1.setTempStamina(player1.getStamina() - light);
                     return true;
                 }
             case "MediumKick":
-                if(((roll1 + player1.getMediumKickAttack()) >= (roll2 + player2.getKickBlock()) || isCrit) && player1.getTempStamina() >= 3){
+                if(((roll1 + player1.getMediumKickAttack()) >= (roll2 + player2.getKickBlock()) || isCrit) && player1.getTempStamina() >= medium){
+                    player1.setTempStamina(player1.getStamina() - medium);
                     return true;
                 }
             case "HeavyKick":
-                if(((roll1 + player1.getHeavyKickAttack()) >= (roll2 + player2.getKickBlock()) || isCrit) && player1.getTempStamina() >= 5){
+                if(((roll1 + player1.getHeavyKickAttack()) >= (roll2 + player2.getKickBlock()) || isCrit) && player1.getTempStamina() >= heavy){
+                    player1.setTempStamina(player1.getStamina() - heavy);
                     return true;
                 }
             case "LightMagic":
-                if(((roll1 + player1.getLightMagicAttack()) >= (roll2 + player2.getMagicBlock()) || isCrit) && player1.getTempMana() >= 1){
+                if(((roll1 + player1.getLightMagicAttack()) >= (roll2 + player2.getMagicBlock()) || isCrit) && player1.getTempMana() >= light){
+                    player1.setTempMana(player1.getTempMana() - light);
                     return true;
                 }
             case "MediumMagic":
-                if(((roll1 + player1.getMediumMagicAttack()) >= (roll2 + player2.getMagicBlock()) || isCrit) && player1.getTempMana() >= 3){
+                if(((roll1 + player1.getMediumMagicAttack()) >= (roll2 + player2.getMagicBlock()) || isCrit) && player1.getTempMana() >= medium){
+                    player1.setTempMana(player1.getTempMana() - medium);
                     return true;
                 }
             case "HeavyMagic":
-                if(((roll1 + player1.getHeavyMagicAttack()) >= (roll2 + player2.getMagicBlock()) || isCrit) && player1.getTempMana() >= 5){
+                if(((roll1 + player1.getHeavyMagicAttack()) >= (roll2 + player2.getMagicBlock()) || isCrit) && player1.getTempMana() >= heavy){
+                    player1.setTempMana(player1.getTempMana() - heavy);
                     return true;
                 }
         }
-
+        switch (lmh) {
+            case "LightPunch", "LightKick" -> player1.setTempStamina(player1.getTempStamina() - light);
+            case "LightMagic" -> player1.setTempMana(player1.getMana() - light);
+            case "MediumKick", "MediumPunch" -> player1.setTempStamina(player1.getTempStamina() - medium);
+            case "MediumMagic" -> player1.setTempMana(player1.getTempMana() - medium);
+            case "HeavyKick", "HeavyPunch" -> player1.setTempStamina(player1.getTempStamina() - heavy);
+            case "HeavyMagic" -> player1.setTempMana(player1.getTempMana() - heavy);
+        }
         return false;
     }
     public static String getAttackType(Character player){
@@ -142,35 +221,35 @@ public class Commands {
                     attackType = "Punch";
                 else if(rollValue > 3 && rollValue < 7)
                     attackType = "Kick";
-                else if(rollValue > 6)
+                else
                     attackType = "Magic";
             case "Boxer":
                 if(rollValue < 7)
                     attackType = "Punch";
-                else if(rollValue < 9 && rollValue > 6)
+                else if(rollValue < 9 && rollValue >= 7)
                     attackType = "Kick";
-                else if(rollValue > 8)
+                else
                     attackType = "Magic";
             case "Kickboxer":
                 if(rollValue < 7)
                     attackType = "Kick";
-                else if(rollValue < 9 && rollValue > 6)
+                else if(rollValue < 9 && rollValue >=7)
                     attackType = "Punch";
-                else if(rollValue > 8)
+                else
                     attackType = "Magic";
             case "Magician":
                 if(rollValue < 7)
                     attackType = "Magic";
-                else if(rollValue < 9 && rollValue > 6)
+                else if(rollValue < 9 && rollValue >= 7)
                     attackType = "Punch";
-                else if(rollValue > 8)
+                else
                     attackType = "Kick";
             case "MMA":
                 if(rollValue < 5)
                     attackType = "Punch";
                 else if(rollValue > 4 && rollValue < 9)
                     attackType = "Kick";
-                else if(rollValue > 8)
+                else
                     attackType = "Magic";
         }
         return attackType;
@@ -178,15 +257,15 @@ public class Commands {
 
     public static String determineLMH(Character player){
         attackType = getAttackType(player);
-        lp = player.getLightPunchAttack();
-        mp = player.getMediumPunchAttack();
-        hp = player.getHeavyPunchAttack();
-        lk = player.getLightKickAttack();
-        mk = player.getMediumKickAttack();
-        hk = player.getHeavyKickAttack();
-        lm = player.getLightMagicAttack();
-        mm = player.getMediumMagicAttack();
-        hm = player.getHeavyMagicAttack();
+        int lp = player.getLightPunchAttack();
+        int mp = player.getMediumPunchAttack();
+        int hp = player.getHeavyPunchAttack();
+        int lk = player.getLightKickAttack();
+        int mk = player.getMediumKickAttack();
+        int hk = player.getHeavyKickAttack();
+        int lm = player.getLightMagicAttack();
+        int mm = player.getMediumMagicAttack();
+        int hm = player.getHeavyMagicAttack();
 
         switch(attackType){
             case "Punch":
@@ -218,7 +297,8 @@ public class Commands {
         return lmh;
     }
 
-    public void getlmhOuput(String lmh){
+    public static void getlmhOuput(String lmh){
+        String lmhOutput = "";
         switch(lmh){
             case "LightPunch":
                 lmhOutput = " does a quick jab!";
@@ -238,8 +318,6 @@ public class Commands {
                 lmhOutput = " charges up for a fireball!";
             case "HeavyMagic":
                 lmhOutput = " unleashes a beam of energy!";
-            default:
-                lmhOutput = "does nothing!";
         }
 
         System.out.println(lmhOutput);
