@@ -15,22 +15,54 @@ public class Commands {
     private static final int medium = 3;
     private static final int heavy = 5;
 
-    //TODO create regenerateHitPoints()
-    //TODO create regenerateStamina()
-    //TODO create regenerateMana()
+    //regenerates hitpoints between rounds
+
+    public static void regenerateHitPoints(Character player){
+        rollValue = roll(D20);
+        if(player.getTempHitpoints() + rollValue > player.getHitPoints())
+            player.setTempHitpoints(player.getHitPoints());
+        else
+            player.setTempHitpoints(player.getTempHitpoints() + rollValue);
+    }
+
+    //regenerates stamina between attacks
+    public static void regenerateStamina(Character player){
+        rollValue = roll(D4);
+        if(player.getTempStamina() + rollValue > player.getStamina())
+            player.setTempStamina(player.getStamina());
+        else
+            player.setTempStamina(player.getTempStamina() + rollValue);
+    }
+    //TODO create regenerateStaminaRounds()
+
+    //regenerates mana between attacks
+    public static void regenerateMana(Character player){
+        rollValue = roll(D4);
+        if(player.getTempMana() + rollValue > player.getMana())
+            player.setTempMana(player.getMana());
+        else
+            player.setTempMana(player.getTempMana() + rollValue);
+    }
+    //TODO create regenerateManaRounds()
+
+    //Roll a die with values 1-index inclusive
     public static int roll(int index){
         rollValue = (int) (Math.random()*index)+1;
         return rollValue;
     }
+
+    //Roll a die with values 0-index inclusive
     public static int rollW0(int index){
         rollValue = (int) (Math.random()*index)+1;
         return rollValue;
     }
 
+    //Determines whether a player is KO'd
     public boolean isKO(Character player){
         return player.getTempHitpoints() <= 0;
     }
 
+    //Calculates the damage player 1 deals to player 2 after considering dodgeBlock
     public static void dealDamage(Character player1, Character player2){
         String tempLMH = determineLMH(player1);
         boolean hit = isHit(tempLMH, player1, player2);
@@ -51,7 +83,7 @@ public class Commands {
 
     }
 
-
+    //Determines how much damage is blocked or dodged
     public static int dodgeOrBlock(int damage, String lmh, Character player) {
         rollValue = roll(D10);
         int r;
@@ -103,6 +135,8 @@ public class Commands {
         }
         return damage;
     }
+
+    //Calculates damage a player deals based on the type of attack and whether it is a critical strike
     public static int calcDamage(String lmh, boolean isCrit, Character player){
         switch(lmh){
             case "LightPunch":
@@ -149,6 +183,7 @@ public class Commands {
         return damage;
     }
 
+    //determines whether player1 hits player2 and if it is a critical strike
     public static boolean isHit(String lmh, Character player1, Character player2){
             int roll1 = roll(D20);
             int roll2 = roll(D20);
@@ -214,6 +249,8 @@ public class Commands {
         }
         return false;
     }
+
+    //determines the attack type based on the player's fight style
     public static String getAttackType(Character player){
         rollValue = roll(10);
 
@@ -258,6 +295,7 @@ public class Commands {
         return attackType;
     }
 
+    //determine whether the attack is a light, medium, or heavy attack
     public static String determineLMH(Character player){
         attackType = getAttackType(player);
         int lp = player.getLightPunchAttack();
@@ -299,7 +337,7 @@ public class Commands {
         }
         return lmh;
     }
-
+    //gives an output based on lmh determination
     public static void getlmhOuput(String lmh){
         String lmhOutput = "";
         switch(lmh){
