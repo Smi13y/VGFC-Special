@@ -18,22 +18,36 @@ public class Commands {
     //regenerates hitpoints between rounds
 
     public static void regenerateHitPoints(Character player){
-        rollValue = roll(D20);
+        rollValue = roll(D12);
         if(player.getTempHitpoints() + rollValue > player.getHitPoints())
             player.setTempHitpoints(player.getHitPoints());
         else
             player.setTempHitpoints(player.getTempHitpoints() + rollValue);
+
+        System.out.println(player.getName() + "regenerated " + rollValue + " health.");
     }
 
     //regenerates stamina between attacks
     public static void regenerateStamina(Character player){
-        rollValue = roll(D4);
+        rollValue = roll(D3);
         if(player.getTempStamina() + rollValue > player.getStamina())
             player.setTempStamina(player.getStamina());
         else
             player.setTempStamina(player.getTempStamina() + rollValue);
+
+        System.out.println(player.getName() + " regenerated " + rollValue + " stamina.");
     }
-    //TODO create regenerateStaminaRounds()
+
+    public static void regenerateStaminaRounds(Character player){
+        rollValue = roll(D12);
+        if(player.getTempStamina() + rollValue > player.getStamina())
+            player.setTempStamina(player.getStamina());
+        else
+            player.setTempStamina(player.getTempStamina() + rollValue);
+
+        System.out.println(player.getName() + " regenerated " + rollValue + " stamina.");
+
+    }
 
     //regenerates mana between attacks
     public static void regenerateMana(Character player){
@@ -42,8 +56,20 @@ public class Commands {
             player.setTempMana(player.getMana());
         else
             player.setTempMana(player.getTempMana() + rollValue);
+
+        System.out.println(player.getName() + " regenerated " + rollValue + " mana.");
     }
-    //TODO create regenerateManaRounds()
+
+    public static void regenerateManaRounds(Character player){
+        rollValue = roll(D12);
+        if(player.getTempMana() + rollValue > player.getMana())
+            player.setTempMana(player.getMana());
+        else
+            player.setTempMana(player.getTempMana() + rollValue);
+
+        System.out.println(player.getName() + " regenerated " + rollValue + " mana.");
+
+    }
 
     //Roll a die with values 1-index inclusive
     public static int roll(int index){
