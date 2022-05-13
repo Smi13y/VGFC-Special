@@ -35,7 +35,7 @@ public class Commands {
         else
             player.setTempStamina(player.getTempStamina() + rollValue);
 
-        System.out.println(player.getName() + " regenerated " + rollValue + " stamina.");
+        //System.out.println(player.getName() + " regenerated " + rollValue + " stamina.");
     }
 
     public static void regenerateStaminaRounds(Character player){
@@ -57,7 +57,7 @@ public class Commands {
         else
             player.setTempMana(player.getTempMana() + rollValue);
 
-        System.out.println(player.getName() + " regenerated " + rollValue + " mana.");
+        //System.out.println(player.getName() + " regenerated " + rollValue + " mana.");
     }
 
     public static void regenerateManaRounds(Character player){
@@ -101,6 +101,9 @@ public class Commands {
         if(hit) {
             d = calcDamage(tempLMH, isCrit, player1);
            newD = dodgeOrBlock(d, tempLMH, player2);
+           if(newD <=0){
+               newD = 0;
+           }
             player2.setTempHitpoints(player2.getTempHitpoints()-newD);
             System.out.println(player1.getName() + " dealt " + newD + " damage to " + player2.getName());
         } else{

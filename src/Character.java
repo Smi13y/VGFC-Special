@@ -13,9 +13,9 @@ public class Character {
     private int hitPoints, tempHitpoints;
     private int stamina, tempStamina;
     private int mana, tempMana;
-    private ArrayList<String> titles = new ArrayList<String>();
+    //removed titles
 
-    public Character(String name, String fightStyle, int hitPoints, int stamina, int mana,int dodgeBlock, int[] frequency, int[] statblock, ArrayList<String> titles) {
+    public Character(String name, String fightStyle, int hitPoints, int stamina, int mana,int dodgeBlock, int[] statblock) {
         this.name = name;
         this.fightStyle = fightStyle;
         this.hitPoints = hitPoints;
@@ -25,8 +25,6 @@ public class Character {
         this.tempStamina = stamina;
         this.tempMana = mana;
         this.dodgeBlock = dodgeBlock;
-        this.titles = titles;
-        this.frequency = frequency;
 
         lightPunchAttack = statblock[0];
         mediumPunchAttack = statblock[1];
@@ -201,14 +199,6 @@ public class Character {
         this.statblock = statblock;
     }
 
-    public int[] getFrequency() {
-        return frequency;
-    }
-
-    public void setFrequency(int[] frequency) {
-        this.frequency = frequency;
-    }
-
     public int getHitPoints() {
         return hitPoints;
     }
@@ -257,13 +247,6 @@ public class Character {
         this.tempMana = tempMana;
     }
 
-    public ArrayList<String> getTitles() {
-        return titles;
-    }
-
-    public void setTitles(ArrayList<String> titles) {
-        this.titles = titles;
-    }
 
     public String toString(){
         return "Name: " + name + "\nFight Style: " + fightStyle + "\nHP: " + hitPoints + "\tStamina: " + stamina + "\tMana: " + mana +
@@ -271,8 +254,7 @@ public class Character {
                 "\nKick: " + lightKickAttack + "-" + mediumKickAttack + "-" + heavyKickAttack + "-" + kickBlock +
                 "\nMagic: " + lightMagicAttack + "-" + mediumMagicAttack + "-" + heavyMagicAttack + "-" + magicBlock +
                 "\nDodge/Block: " + dodgeBlock +
-                "\nW/D/L: " + win + "-" + draw + "-" + loss +
-                "\nTitles: " + titles;
+                "\nW/D/L: " + win + "-" + draw + "-" + loss;
 
     }
 }

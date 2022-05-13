@@ -1,27 +1,81 @@
+import java.util.concurrent.TimeUnit;
+
 public class Battle {
-    private boolean fightOver;
     private static int roundTimer, minutes, seconds, roundMax;
     private String timerOutput;
     private static final int ROUND = 1;
 
-    //TODO create round()
+
     //Deal damage
     public static void damage(Character player1, Character player2){
 
-        int rollValue = Commands.roll(2);
+        int rollValue = Commands.roll(6);
 
-        if(rollValue == 1) {
+        if(rollValue == 1 || rollValue == 2) {
             Commands.dealDamage(player1, player2);
             Commands.dealDamage(player2, player1);
+        } else if (rollValue == 3 || rollValue == 4){
+            Commands.dealDamage(player2, player1);
+            Commands.dealDamage(player1, player2);
+        } else if (rollValue == 5){
+            Commands.dealDamage(player1, player2);
         } else{
             Commands.dealDamage(player2, player1);
-            Commands.dealDamage(player1, player2);
         }
 
     }
 
-    //TODO create match()
-    //TODO create declareWinner()
+    //run a match
+
+    public static void match(Character player1, Character player2, int roundMax){
+        player1.setTempHitpoints(player1.getHitPoints());
+        player2.setTempHitpoints(player2.getHitPoints());
+        int r = ROUND;
+
+        while(!isFightOver(player1, player2)){
+            roundTimer = 0;
+            int roll;
+            System.out.println("================");
+            System.out.println("Round " + r + " FIGHT!");
+            System.out.println("================");
+            try {
+                while(roundTimer < roundMax && !isFightOver(player1, player2)) {
+                    roll = Commands.roll(10);
+                    roundTimer = roundTimer + roll;
+                    TimeUnit.SECONDS.sleep(roll);
+                    timerPrint(roundTimer, roundMax);
+                    damage(player1, player2);
+                    if(!isFightOver(player1, player2)){
+                        restBetweenAttacks(player1);
+                        restBetweenAttacks(player2);
+                    }
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            System.out.println("================");
+            System.out.println("Round " + r + " OVER!");
+            System.out.println("================");
+            System.out.println("");
+
+            if(!isFightOver(player1, player2)){
+                Commands.regenerateHitPoints(player1);
+                Commands.regenerateStaminaRounds(player1);
+                Commands.regenerateManaRounds(player1);
+
+                Commands.regenerateHitPoints(player2);
+                Commands.regenerateStaminaRounds(player2);
+                Commands.regenerateManaRounds(player2);
+
+            }
+            r++;
+        }
+
+        declareWinner(player1, player2);
+
+    }
+
     //TODO create tournament()
     //TODO create tagTeam()
     //TODO create battleRoyale()
