@@ -355,71 +355,98 @@ public class Commands {
         switch(attackType){
             case "Punch":
                 rollValue = roll(lp + mp + hp);
-                if(rollValue <= lp)
+                if(rollValue <= lp) {
                     lmh = "LightPunch";
-                else if(rollValue > lp && rollValue <= (lp+ mp))
+                    return lmh;
+                }
+                else if(rollValue > lp && rollValue <= (lp+ mp)) {
                     lmh = "MediumPunch";
-                else if(rollValue > (lp + mp));
+                    return lmh;
+                }
+                else if(rollValue > (lp + mp)) {
                     lmh = "HeavyPunch";
+                    return lmh;
+                }
             case "Kick":
                 rollValue = roll(lk + mk + hk);
-                if(rollValue <= lk)
+                if(rollValue <= lk) {
                     lmh = "LightKick";
-                else if(rollValue > lk && rollValue <= (lk+ mk))
+                    return lmh;
+                }
+                else if(rollValue > lk && rollValue <= (lk+ mk)) {
                     lmh = "MediumKick";
-                else if(rollValue > (lk + mk));
-                lmh = "HeavyKick";
+                    return lmh;
+                }
+                else if(rollValue > (lk + mk)) {
+                    lmh = "HeavyKick";
+                    return lmh;
+                }
             case "Magic":
                 rollValue = roll(lm + mm + hm);
-                if(rollValue <= lm)
+                if(rollValue <= lm) {
                     lmh = "LightMagic";
-                else if(rollValue > lm && rollValue <= (lm+ mm))
+                    return lmh;
+                }
+                else if(rollValue > lm && rollValue <= (lm+ mm)) {
                     lmh = "MediumMagic";
-                else if(rollValue > (lm + mm));
-                lmh = "HeavyMagic";
+                    return lmh;
+                }
+                else if(rollValue > (lm + mm)) {
+                    lmh = "HeavyMagic";
+                    return lmh;
+                }
 
         }
         return lmh;
     }
     //gives an output based on lmh determination
     public static void getlmhOuput(String lmh){
-        String lmhOutput = "";
+        String lmhOutput;
         switch(lmh){
             case "LightPunch":
                 lmhOutput = " does a quick jab!";
                 System.out.println(lmhOutput);
+                break;
 
             case "MediumPunch":
                 lmhOutput = " goes for the haymaker!";
                 System.out.println(lmhOutput);
+                break;
 
             case "HeavyPunch":
                 lmhOutput = " winds up with an uppercut!";
                 System.out.println(lmhOutput);
+                break;
 
             case "LightKick":
                 lmhOutput = " does a snap kick";
                 System.out.println(lmhOutput);
+                break;
 
             case "MediumKick":
                 lmhOutput = " goes for the roundhouse!";
                 System.out.println(lmhOutput);
+                break;
 
             case "HeavyKick":
                 lmhOutput = " unleashes a powerful side kick";
                 System.out.println(lmhOutput);
+                break;
 
             case "LightMagic":
                 lmhOutput = " throws a magic missile";
                 System.out.println(lmhOutput);
+                break;
 
             case "MediumMagic":
                 lmhOutput = " charges up for a fireball!";
                 System.out.println(lmhOutput);
+                break;
 
             case "HeavyMagic":
                 lmhOutput = " unleashes a beam of energy!";
                 System.out.println(lmhOutput);
+                break;
 
         }
 

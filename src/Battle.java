@@ -11,14 +11,25 @@ public class Battle {
 
         if(rollValue == 1 || rollValue == 2) {
             Commands.dealDamage(player1, player2);
+            System.out.println("----------");
             Commands.dealDamage(player2, player1);
+            System.out.println("----------");
+
         } else if (rollValue == 3 || rollValue == 4){
             Commands.dealDamage(player2, player1);
+            System.out.println("----------");
+
             Commands.dealDamage(player1, player2);
+            System.out.println("----------");
+
         } else if (rollValue == 5){
             Commands.dealDamage(player1, player2);
+            System.out.println("----------");
+
         } else{
             Commands.dealDamage(player2, player1);
+            System.out.println("----------");
+
         }
 
     }
