@@ -286,40 +286,55 @@ public class Commands {
         switch(player.getFightStyle()){
             case "Balance":
                 rollValue = roll(9);
-                if(rollValue < 4)
+                if(rollValue < 4) {
                     attackType = "Punch";
-                else if(rollValue > 3 && rollValue < 7)
+                }else if(rollValue > 3 && rollValue < 7) {
                     attackType = "Kick";
-                else
+                }else {
                     attackType = "Magic";
+                }
+                return attackType;
+
             case "Boxer":
-                if(rollValue < 7)
+                if(rollValue < 7) {
                     attackType = "Punch";
-                else if(rollValue < 9 && rollValue >= 7)
+                }else if(rollValue < 9 && rollValue >= 7){
                     attackType = "Kick";
-                else
+                } else {
                     attackType = "Magic";
+                }
+                return attackType;
+
             case "Kickboxer":
-                if(rollValue < 7)
+                if(rollValue < 7) {
                     attackType = "Kick";
-                else if(rollValue < 9 && rollValue >=7)
+                }else if(rollValue < 9 && rollValue >=7) {
                     attackType = "Punch";
-                else
+                }else {
                     attackType = "Magic";
+                }
+                return attackType;
+
             case "Magician":
-                if(rollValue < 7)
+                if(rollValue < 7) {
                     attackType = "Magic";
-                else if(rollValue < 9 && rollValue >= 7)
+                }else if(rollValue < 9 && rollValue >= 7) {
                     attackType = "Punch";
-                else
+                }else {
                     attackType = "Kick";
+                }
+                return attackType;
+
             case "MMA":
-                if(rollValue < 5)
+                if(rollValue < 5) {
                     attackType = "Punch";
-                else if(rollValue > 4 && rollValue < 9)
+                }else if(rollValue > 4 && rollValue < 9) {
                     attackType = "Kick";
-                else
+                }else {
                     attackType = "Magic";
+                }
+                return attackType;
+
         }
         return attackType;
     }
@@ -357,11 +372,11 @@ public class Commands {
             case "Magic":
                 rollValue = roll(lm + mm + hm);
                 if(rollValue <= lm)
-                    lmh = "LightPunch";
+                    lmh = "LightMagic";
                 else if(rollValue > lm && rollValue <= (lm+ mm))
-                    lmh = "MediumPunch";
+                    lmh = "MediumMagic";
                 else if(rollValue > (lm + mm));
-                lmh = "HeavyPunch";
+                lmh = "HeavyMagic";
 
         }
         return lmh;
@@ -372,25 +387,42 @@ public class Commands {
         switch(lmh){
             case "LightPunch":
                 lmhOutput = " does a quick jab!";
+                System.out.println(lmhOutput);
+
             case "MediumPunch":
                 lmhOutput = " goes for the haymaker!";
+                System.out.println(lmhOutput);
+
             case "HeavyPunch":
                 lmhOutput = " winds up with an uppercut!";
+                System.out.println(lmhOutput);
+
             case "LightKick":
                 lmhOutput = " does a snap kick";
+                System.out.println(lmhOutput);
+
             case "MediumKick":
                 lmhOutput = " goes for the roundhouse!";
+                System.out.println(lmhOutput);
+
             case "HeavyKick":
                 lmhOutput = " unleashes a powerful side kick";
+                System.out.println(lmhOutput);
+
             case "LightMagic":
                 lmhOutput = " throws a magic missile";
+                System.out.println(lmhOutput);
+
             case "MediumMagic":
                 lmhOutput = " charges up for a fireball!";
+                System.out.println(lmhOutput);
+
             case "HeavyMagic":
                 lmhOutput = " unleashes a beam of energy!";
+                System.out.println(lmhOutput);
+
         }
 
-        System.out.println(lmhOutput);
     }
 
 }
