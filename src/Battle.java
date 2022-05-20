@@ -9,6 +9,7 @@ public class Battle {
 
         int rollValue = Commands.roll(6);
 
+
         if(rollValue == 1 || rollValue == 2) {
             Commands.dealDamage(player1, player2);
             System.out.println("----------");
@@ -39,6 +40,10 @@ public class Battle {
     public static void match(Hero player1, Hero player2, int roundMax){
         player1.setTempHitpoints(player1.getHitPoints());
         player2.setTempHitpoints(player2.getHitPoints());
+
+        System.out.println(player1);
+        System.out.println("================VS================");
+        System.out.println(player2);
         int r = ROUND;
 
         while(isFightOver(player1, player2)){

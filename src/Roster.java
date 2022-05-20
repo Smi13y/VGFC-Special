@@ -8,6 +8,7 @@ public class Roster {
     //TODO create importRoster()
 
     ArrayList<Hero> heroList;
+
     public Roster () {
         heroList = new ArrayList<Hero>();
     }
@@ -15,26 +16,28 @@ public class Roster {
 
         Scanner inFS = null;
         FileInputStream fileByteStream = null;
+        int hitPoints, stamina, mana, dodgeBlock, win, loss, draw;
+        String name, fightStyle;
+        int[] statBlock = new int[12];
 
         try{
             // open the File and set delimiters
             fileByteStream = new FileInputStream("Roster.txt");
             inFS = new Scanner(fileByteStream);
-            inFS.useDelimiter("[,\r\n]+");
-            inFS.nextLine();
+            inFS.useDelimiter("[\s\n]+");
+
 
             // continue while there is more data to read
             while(inFS.hasNext()) {
 
                 // read four data elements
-                String name = inFS.next();
+                name = inFS.next();
+                fightStyle = inFS.next();
+                hitPoints = inFS.nextInt();
+                stamina = inFS.nextInt();
+                mana = inFS.nextInt();
+                dodgeBlock = inFS.nextInt();
 
-                String fightStyle = inFS.next();
-                int hitPoints = inFS.nextInt();
-                int stamina = inFS.nextInt();
-                int mana = inFS.nextInt();
-                int dodgeBlock = inFS.nextInt();
-                int[] statBlock = new int[12];
                 statBlock[0] = inFS.nextInt();
                 statBlock[1] = inFS.nextInt();
                 statBlock[2] = inFS.nextInt();
@@ -48,14 +51,14 @@ public class Roster {
                 statBlock[10] = inFS.nextInt();
                 statBlock[11] = inFS.nextInt();
 
-                int win = inFS.nextInt();
-                int draw = inFS.nextInt();
-                int loss = inFS.nextInt();
+                win = inFS.nextInt();
+                draw = inFS.nextInt();
+                loss = inFS.nextInt();
 
                 Hero hero = new Hero(name, fightStyle, hitPoints, stamina, mana, dodgeBlock, statBlock, win, draw, loss);
-                //TO DO: instantiate an object of the Character class
+                //TO DO: instantiate an object of the Hero class
                 heroList.add(hero);
-                //TO DO: add object to the collection (characterList)
+                //TO DO: add object to the collection (heroList)
             }
             fileByteStream.close();
 
@@ -65,7 +68,7 @@ public class Roster {
         }
     }
 
-    public void exportFile(ArrayList characterList){
+    public void exportFile(ArrayList<Hero> heroList){
         FileOutputStream fileStream = null;
         PrintWriter outFS = null;
         try {
@@ -92,4 +95,6 @@ public class Roster {
             System.out.println("Oops! Error related to: Character.dat" );
         }
     }
+
+
 }
