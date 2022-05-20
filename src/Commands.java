@@ -17,7 +17,7 @@ public class Commands {
 
     //regenerates hitpoints between rounds
 
-    public static void regenerateHitPoints(Character player){
+    public static void regenerateHitPoints(Hero player){
         rollValue = roll(D12);
         if(player.getTempHitpoints() + rollValue > player.getHitPoints())
             player.setTempHitpoints(player.getHitPoints());
@@ -28,7 +28,7 @@ public class Commands {
     }
 
     //regenerates stamina between attacks
-    public static void regenerateStamina(Character player){
+    public static void regenerateStamina(Hero player){
         rollValue = roll(D3);
         if(player.getTempStamina() + rollValue > player.getStamina())
             player.setTempStamina(player.getStamina());
@@ -38,7 +38,7 @@ public class Commands {
         //System.out.println(player.getName() + " regenerated " + rollValue + " stamina.");
     }
 
-    public static void regenerateStaminaRounds(Character player){
+    public static void regenerateStaminaRounds(Hero player){
         rollValue = roll(D12);
         if(player.getTempStamina() + rollValue > player.getStamina())
             player.setTempStamina(player.getStamina());
@@ -50,7 +50,7 @@ public class Commands {
     }
 
     //regenerates mana between attacks
-    public static void regenerateMana(Character player){
+    public static void regenerateMana(Hero player){
         rollValue = roll(D4);
         if(player.getTempMana() + rollValue > player.getMana())
             player.setTempMana(player.getMana());
@@ -60,7 +60,7 @@ public class Commands {
         //System.out.println(player.getName() + " regenerated " + rollValue + " mana.");
     }
 
-    public static void regenerateManaRounds(Character player){
+    public static void regenerateManaRounds(Hero player){
         rollValue = roll(D12);
         if(player.getTempMana() + rollValue > player.getMana())
             player.setTempMana(player.getMana());
@@ -84,12 +84,12 @@ public class Commands {
     }
 
     //Determines whether a player is KO'd
-    public boolean isKO(Character player){
+    public boolean isKO(Hero player){
         return player.getTempHitpoints() <= 0;
     }
 
     //Calculates the damage player 1 deals to player 2 after considering dodgeBlock
-    public static void dealDamage(Character player1, Character player2){
+    public static void dealDamage(Hero player1, Hero player2){
         String tempLMH = determineLMH(player1);
         boolean hit = isHit(tempLMH, player1, player2);
         int d;
@@ -113,7 +113,7 @@ public class Commands {
     }
 
     //Determines how much damage is blocked or dodged
-    public static int dodgeOrBlock(int damage, String lmh, Character player) {
+    public static int dodgeOrBlock(int damage, String lmh, Hero player) {
         rollValue = roll(D10);
         int r;
         if(isCrit){
@@ -166,7 +166,7 @@ public class Commands {
     }
 
     //Calculates damage a player deals based on the type of attack and whether it is a critical strike
-    public static int calcDamage(String lmh, boolean isCrit, Character player){
+    public static int calcDamage(String lmh, boolean isCrit, Hero player){
         switch(lmh){
             case "LightPunch":
                 damage = roll(D4) + (player.getLightPunchAttack() - 3);
@@ -213,7 +213,7 @@ public class Commands {
     }
 
     //determines whether player1 hits player2 and if it is a critical strike
-    public static boolean isHit(String lmh, Character player1, Character player2){
+    public static boolean isHit(String lmh, Hero player1, Hero player2){
             int roll1 = roll(D20);
             int roll2 = roll(D20);
             if(roll1 == 20) {
@@ -280,7 +280,7 @@ public class Commands {
     }
 
     //determines the attack type based on the player's fight style
-    public static String getAttackType(Character player){
+    public static String getAttackType(Hero player){
         rollValue = roll(10);
 
         switch(player.getFightStyle()){
@@ -340,7 +340,7 @@ public class Commands {
     }
 
     //determine whether the attack is a light, medium, or heavy attack
-    public static String determineLMH(Character player){
+    public static String determineLMH(Hero player){
         attackType = getAttackType(player);
         int lp = player.getLightPunchAttack();
         int mp = player.getMediumPunchAttack();
@@ -446,7 +446,6 @@ public class Commands {
             case "HeavyMagic":
                 lmhOutput = " unleashes a beam of energy!";
                 System.out.println(lmhOutput);
-                break;
 
         }
 

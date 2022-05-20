@@ -1,7 +1,4 @@
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-
-public class Character {
+public class Hero {
     private String name, fightStyle;
     private int lightPunchAttack, mediumPunchAttack, heavyPunchAttack, punchBlock;
     private int lightKickAttack, mediumKickAttack, heavyKickAttack, kickBlock;
@@ -9,13 +6,12 @@ public class Character {
     private int win, draw, loss;
     private int dodgeBlock;
     private int[] statblock;
-    private int[] frequency;
     private int hitPoints, tempHitpoints;
     private int stamina, tempStamina;
     private int mana, tempMana;
     //removed titles
 
-    public Character(String name, String fightStyle, int hitPoints, int stamina, int mana,int dodgeBlock, int[] statblock) {
+    public Hero(String name, String fightStyle, int hitPoints, int stamina, int mana,int dodgeBlock, int[] statblock, int win, int draw, int loss) {
         this.name = name;
         this.fightStyle = fightStyle;
         this.hitPoints = hitPoints;
@@ -41,9 +37,9 @@ public class Character {
         heavyMagicAttack = statblock[10];
         magicBlock = statblock[11];
 
-        win = 0;
-        draw = 0;
-        loss = 0;
+        this.win = win;
+        this.draw = draw;
+        this.loss = loss;
 
     }
 
