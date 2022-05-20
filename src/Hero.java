@@ -4,14 +4,55 @@ public class Hero {
     private int lightKickAttack, mediumKickAttack, heavyKickAttack, kickBlock;
     private int lightMagicAttack, mediumMagicAttack, heavyMagicAttack, magicBlock;
     private int win, draw, loss;
+    private int level, exp;
     private int dodgeBlock;
     private int[] statblock;
     private int hitPoints, tempHitpoints;
     private int stamina, tempStamina;
     private int mana, tempMana;
-    //removed titles
+    //TODO generate namesList
+    private String[] namesList;
+    private String[] styleList = {" ", "Balance", "Boxer", "Kickboxer", "Magician", "MMA"};
+    //removed titles for now
 
-    public Hero(String name, String fightStyle, int hitPoints, int stamina, int mana,int dodgeBlock, int[] statblock, int win, int draw, int loss) {
+    public Hero(String name){
+        this.name = name;
+        this.fightStyle = styleList[Commands.roll(5)];
+
+        this.hitPoints = 30 + Commands.roll(25);
+        this.tempHitpoints = hitPoints;
+
+        this.stamina = 20 + Commands.roll(20);
+        this.tempStamina = stamina;
+
+        this.mana = 20 + Commands.roll(20);
+        this.tempMana = mana;
+
+        this.dodgeBlock = Commands.roll(10);
+
+        this.lightPunchAttack = Commands.roll(5);
+        this.mediumPunchAttack = Commands.roll(5);
+        this.heavyPunchAttack = Commands.roll(5);
+        this.punchBlock = Commands.roll(5);
+
+        this.lightKickAttack = Commands.roll(5);
+        this.mediumKickAttack = Commands.roll(5);
+        this.heavyKickAttack = Commands.roll(5);
+        this.kickBlock = Commands.roll(5);
+
+        this.lightMagicAttack = Commands.roll(5);
+        this.mediumMagicAttack = Commands.roll(5);
+        this.heavyMagicAttack = Commands.roll(5);
+        this.magicBlock = Commands.roll(5);
+
+        this.win = win;
+        this.draw = draw;
+        this.loss = loss;
+
+        this.level = 1;
+        this.exp = 0;
+    }
+    public Hero(String name, String fightStyle, int hitPoints, int stamina, int mana,int dodgeBlock, int[] statblock, int win, int draw, int loss, int level, int exp) {
         this.name = name;
         this.fightStyle = fightStyle;
         this.hitPoints = hitPoints;
@@ -40,6 +81,9 @@ public class Hero {
         this.win = win;
         this.draw = draw;
         this.loss = loss;
+
+        this.level = 1;
+        this.exp = 0;
 
     }
 
@@ -243,6 +287,21 @@ public class Hero {
         this.tempMana = tempMana;
     }
 
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public int getExp() {
+        return exp;
+    }
+
+    public void setExp(int exp) {
+        this.exp = exp;
+    }
 
     public String toString(){
         return "Name: " + name + "\nFight Style: " + fightStyle + "\nHP: " + hitPoints + "\tStamina: " + stamina + "\tMana: " + mana +
@@ -250,6 +309,7 @@ public class Hero {
                 "\nKick: " + lightKickAttack + "-" + mediumKickAttack + "-" + heavyKickAttack + "-" + kickBlock +
                 "\nMagic: " + lightMagicAttack + "-" + mediumMagicAttack + "-" + heavyMagicAttack + "-" + magicBlock +
                 "\nDodge/Block: " + dodgeBlock +
+                "\nLevel: " + level + " Exp: " + exp +
                 "\nW/D/L: " + win + "-" + draw + "-" + loss;
 
     }

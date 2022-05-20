@@ -3,10 +3,6 @@ import java.io.*;
 //A class meant for building and populating a roster
 public class Roster {
 
-    //TODO create generateCharacter()
-    //TODO create generateRoster()
-    //TODO create importRoster()
-
     ArrayList<Hero> heroList;
 
     public Roster () {
@@ -16,7 +12,7 @@ public class Roster {
 
         Scanner inFS = null;
         FileInputStream fileByteStream = null;
-        int hitPoints, stamina, mana, dodgeBlock, win, loss, draw;
+        int hitPoints, stamina, mana, dodgeBlock, win, loss, draw, level, exp;
         String name, fightStyle;
         int[] statBlock = new int[12];
 
@@ -54,8 +50,10 @@ public class Roster {
                 win = inFS.nextInt();
                 draw = inFS.nextInt();
                 loss = inFS.nextInt();
+                level = inFS.nextInt();
+                exp = inFS.nextInt();
 
-                Hero hero = new Hero(name, fightStyle, hitPoints, stamina, mana, dodgeBlock, statBlock, win, draw, loss);
+                Hero hero = new Hero(name, fightStyle, hitPoints, stamina, mana, dodgeBlock, statBlock, win, draw, loss, level, exp);
                 //TO DO: instantiate an object of the Hero class
                 heroList.add(hero);
                 //TO DO: add object to the collection (heroList)
@@ -85,7 +83,8 @@ public class Roster {
                         + " " + c.getLightPunchAttack() + " " + c.getMediumPunchAttack() + " " + c.getHeavyPunchAttack() + " " + c.getPunchBlock()
                         + " " + c.getLightKickAttack() + " " + c.getMediumKickAttack() + " " + c.getHeavyKickAttack() + " " + c.getKickBlock()
                         + " " + c.getLightMagicAttack() + " " + c.getMediumMagicAttack() + " " + c.getHeavyMagicAttack() + " " + c.getMagicBlock()
-                        + " " + c.getWin() + " " + c.getDraw() + " " + c.getLoss() + "\n");
+                        + " " + c.getWin() + " " + c.getDraw() + " " + c.getLoss()
+                        + " " + c.getLevel() + " " + c.getExp() + "\n");
             }
 
             // Done with file, so try to close

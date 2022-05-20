@@ -109,17 +109,134 @@ public class Battle {
     //Declares a winner
     public static void declareWinner(Hero player1, Hero player2){
         if(isKO(player1) && !isKO(player2)){
-            player1.setLoss(player1.getLoss()+1);
-            player2.setWin(player2.getWin()+1);
             System.out.println(player2.getName() + " wins by KO!");
+            player1.setLoss(player1.getLoss()+1);
+            checkLevelUp(player1, 1);
+            player2.setWin(player2.getWin()+1);
+            checkLevelUp(player2, 35);
         }else if(!isKO(player1) && isKO(player2)){
-            player1.setWin(player1.getWin()+1);
-            player2.setLoss(player2.getLoss()+1);
             System.out.println(player1.getName() + " wins by KO!");
+            player1.setWin(player1.getWin()+1);
+            checkLevelUp(player1, 5);
+            player2.setLoss(player2.getLoss()+1);
+            checkLevelUp(player2, 1);
         }else if(isDraw(player1, player2)){
-            player1.setDraw(player1.getDraw()+1);
-            player2.setDraw(player2.getDraw()+1);
             System.out.println("It's a draw!");
+            player1.setDraw(player1.getDraw()+1);
+            checkLevelUp(player1, 3);
+            player2.setDraw(player2.getDraw()+1);
+            checkLevelUp(player2, 3);
+        }
+    }
+    //checks if player levels up and then levels them up if so
+    public static void checkLevelUp(Hero player, int exp){
+        int level = player.getLevel();
+        player.setExp(player.getExp() + exp);
+        switch(level){
+            case 1:
+                if(player.getExp() >= 10) {
+                    player.setLevel(level + 1);
+                    System.out.println(player.getName() + "is now " + player.getLevel() + "!");
+                    levelUpStat(player);
+                } else{
+                    System.out.println(player.getName() + " received " + exp + " exp!");
+                }
+                break;
+            case 2:
+                if(player.getExp() >= 25) {
+                    player.setLevel(level + 1);
+                    System.out.println(player.getName() + "is now " + player.getLevel() + "!");
+                    levelUpStat(player);
+                } else{
+                    System.out.println(player.getName() + " received " + exp + " exp!");
+                }
+                break;
+            case 3:
+                if(player.getExp() >= 63) {
+                    player.setLevel(level + 1);
+                    System.out.println(player.getName() + "is now " + player.getLevel() + "!");
+                    levelUpStat(player);
+                } else{
+                    System.out.println(player.getName() + " received " + exp + " exp!");
+                }
+                break;
+            case 4:
+                if(player.getExp() >= 158) {
+                    player.setLevel(level + 1);
+                    System.out.println(player.getName() + "is now " + player.getLevel() + "!");
+                    levelUpStat(player);
+                } else{
+                    System.out.println(player.getName() + " received " + exp + " exp!");
+                }
+                break;
+            case 5:
+                if(player.getExp() >= 295) {
+                    player.setLevel(level + 1);
+                    System.out.println(player.getName() + "is now " + player.getLevel() + "!");
+                    levelUpStat(player);
+                } else{
+                    System.out.println(player.getName() + " received " + exp + " exp!");
+                }
+                break;
+        }
+    }
+
+    //increases stats upon level up
+    public static void levelUpStat(Hero player){
+        player.setHitPoints(player.getHitPoints() + Commands.roll(25));
+        player.setStamina(player.getStamina() + Commands.roll(20));
+        player.setMana(player.getMana() + Commands.roll(20));
+
+        for(int i = 0; i < 3; i++) {
+            int stat = Commands.roll(12);
+
+            if (stat == 1) {
+                player.setLightPunchAttack(player.getLightPunchAttack() + 1);
+                System.out.println("Light punch increased!");
+            } else if (stat == 2){
+                player.setMediumPunchAttack(player.getMediumPunchAttack() + 1);
+                System.out.println("Medium punch increased!");
+            }
+            else if(stat == 3) {
+                player.setHeavyPunchAttack(player.getHeavyPunchAttack() + 1);
+                System.out.println("Heavy punch increased!");
+            }
+            else if(stat == 4) {
+                player.setLightKickAttack(player.getLightKickAttack() + 1);
+                System.out.println("Light kick increased!");
+            }
+            else if(stat == 5) {
+                player.setMediumKickAttack(player.getMediumKickAttack() + 1);
+                System.out.println("Medium kick increased!");
+            }
+            else if(stat == 6) {
+                player.setHeavyKickAttack(player.getHeavyKickAttack() + 1);
+                System.out.println("Heavy kick increased!");
+            }
+            else if(stat == 7) {
+                player.setLightMagicAttack(player.getLightMagicAttack() + 1);
+                System.out.println("Light magic increased!");
+            }
+            else if(stat == 8) {
+                player.setMediumMagicAttack(player.getMediumMagicAttack() + 1);
+                System.out.println("Medium magic increased!");
+            }
+            else if(stat == 9){
+                player.setHeavyMagicAttack(player.getHeavyMagicAttack() + 1);
+                System.out.println("Heavy magic increased!");
+            }
+            else if(stat == 10) {
+                player.setPunchBlock(player.getPunchBlock() + 1);
+                System.out.println("Punch block increased!");
+            }
+            else if(stat == 11){
+                player.setKickBlock(player.getKickBlock() + 1);
+                System.out.println("Punch block increased!");
+            }
+            else{
+                player.setMagicBlock(player.getMagicBlock() + 1);
+                System.out.println("Punch block increased!");
+            }
         }
     }
 
