@@ -82,7 +82,7 @@ public class Roster {
                         + " " + c.getLightPunchAttack() + " " + c.getMediumPunchAttack() + " " + c.getHeavyPunchAttack() + " " + c.getPunchBlock()
                         + " " + c.getLightKickAttack() + " " + c.getMediumKickAttack() + " " + c.getHeavyKickAttack() + " " + c.getKickBlock()
                         + " " + c.getLightMagicAttack() + " " + c.getMediumMagicAttack() + " " + c.getHeavyMagicAttack() + " " + c.getMagicBlock()
-                        + " " + c.getWin() + " " + c.getDraw() + " " + c.getLoss());
+                        + " " + c.getWin() + " " + c.getDraw() + " " + c.getLoss() + "\n");
             }
 
             // Done with file, so try to close
