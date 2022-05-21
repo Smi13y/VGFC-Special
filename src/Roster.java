@@ -61,7 +61,7 @@ public class Roster {
                 //TO DO: add object to the collection (heroList)
             }
             fileByteStream.close();
-
+            System.out.println("Import Complete!");
             // error while reading the file
         }catch(IOException error1) {
             System.out.println("Oops! Error related to: Character.dat" );
@@ -92,6 +92,7 @@ public class Roster {
             // Done with file, so try to close
             // Note that close() may throw an IOException on failure
             outFS.close();
+            System.out.println("Export Complete!");
         } catch(IOException error1){
             System.out.println("Oops! Error related to: Character.dat" );
         }

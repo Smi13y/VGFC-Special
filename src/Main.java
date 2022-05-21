@@ -30,7 +30,7 @@ public class Main {
                 "Olivia", "Panda", "PaulPheonix", "ProfessorT", "Raven", "Revenant", "RichardWIlliams", "Rippers", "RobertRichards",
                 "Roger", "RogerJr.", "Roperto", "Ruby", "Sake", "Sebastian", "SergeiDragunov", "Shaheen", "ShinKamiya", "SlimBob",
                 "SeveFox", "Sugar", "Tesujin", "TigerJackson", "TigerMiyagi", "Tougou"};
-       /* String name;
+       String name;
         ArrayList<Hero> players = new ArrayList<Hero>();
 
 
@@ -38,7 +38,7 @@ public class Main {
             name = namesList[i];
             Hero newHero = new Hero(name);
             players.add(newHero);
-        }*/
+        }
 
         Roster roster = new Roster();
         //roster.exportFile(players);

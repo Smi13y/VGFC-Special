@@ -151,7 +151,7 @@ public class Battle {
             case 2:
                 if(player.getExp() >= 25) {
                     player.setLevel(level + 1);
-                    System.out.println(player.getName() + " is now " + player.getLevel() + "!");
+                    System.out.println(player.getName() + " is now level " + player.getLevel() + "!");
                     levelUpStat(player);
                 } else{
                     System.out.println(player.getName() + " received " + exp + " exp!");
@@ -160,7 +160,7 @@ public class Battle {
             case 3:
                 if(player.getExp() >= 50) {
                     player.setLevel(level + 1);
-                    System.out.println(player.getName() + " is now " + player.getLevel() + "!");
+                    System.out.println(player.getName() + " is now level " + player.getLevel() + "!");
                     levelUpStat(player);
                 } else{
                     System.out.println(player.getName() + " received " + exp + " exp!");
@@ -169,7 +169,7 @@ public class Battle {
             case 4:
                 if(player.getExp() >= 100) {
                     player.setLevel(level + 1);
-                    System.out.println(player.getName() + " is now " + player.getLevel() + "!");
+                    System.out.println(player.getName() + " is now level " + player.getLevel() + "!");
                     levelUpStat(player);
                 } else{
                     System.out.println(player.getName() + " received " + exp + " exp!");
@@ -178,7 +178,7 @@ public class Battle {
             case 5:
                 if(player.getExp() >= 250) {
                     player.setLevel(level + 1);
-                    System.out.println(player.getName() + " is now " + player.getLevel() + "!");
+                    System.out.println(player.getName() + " is now level " + player.getLevel() + "!");
                     levelUpStat(player);
                 } else{
                     System.out.println(player.getName() + " received " + exp + " exp!");
@@ -187,7 +187,7 @@ public class Battle {
             case 6:
                 if(player.getExp() >= 500) {
                     player.setLevel(level + 1);
-                    System.out.println(player.getName() + " is now " + player.getLevel() + "!");
+                    System.out.println(player.getName() + " is now level " + player.getLevel() + "!");
                     levelUpStat(player);
                 } else{
                     System.out.println(player.getName() + " received " + exp + " exp!");
@@ -196,7 +196,7 @@ public class Battle {
             case 7:
                 if(player.getExp() >= 1000) {
                     player.setLevel(level + 1);
-                    System.out.println(player.getName() + " is now " + player.getLevel() + "!");
+                    System.out.println(player.getName() + " is now level " + player.getLevel() + "!");
                     levelUpStat(player);
                 } else{
                     System.out.println(player.getName() + " received " + exp + " exp!");
@@ -205,7 +205,7 @@ public class Battle {
             case 8:
                 if(player.getExp() >= 2500) {
                     player.setLevel(level + 1);
-                    System.out.println(player.getName() + " is now " + player.getLevel() + "!");
+                    System.out.println(player.getName() + " is now level " + player.getLevel() + "!");
                     levelUpStat(player);
                 } else{
                     System.out.println(player.getName() + " received " + exp + " exp!");
@@ -214,7 +214,7 @@ public class Battle {
             case 9:
                 if(player.getExp() >= 5000) {
                     player.setLevel(level + 1);
-                    System.out.println(player.getName() + " is now " + player.getLevel() + "!");
+                    System.out.println(player.getName() + " is now level " + player.getLevel() + "!");
                     levelUpStat(player);
                 } else{
                     System.out.println(player.getName() + " received " + exp + " exp!");
@@ -223,7 +223,7 @@ public class Battle {
             case 10:
                 if(player.getExp() >= 10000) {
                     player.setLevel(level + 1);
-                    System.out.println(player.getName() + " is now " + player.getLevel() + "!");
+                    System.out.println(player.getName() + " is now level " + player.getLevel() + "!");
                     levelUpStat(player);
                 } else{
                     System.out.println(player.getName() + " received " + exp + " exp!");
