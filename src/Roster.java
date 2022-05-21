@@ -78,7 +78,7 @@ public class Roster {
 
             // Arriving here implies that the file can now be written
             // to, otherwise an exception would have been thrown.
-            outFS.print("Name FightStyle HitPoints Stamina Mana DodgeBlock LightPunch MediumPunch HeavyPunch PunchBlock LightKick MediumKick HeavyKick KickBlock LightMagic MediumMagic HeavyMagic MagicBlock Fights Win Draw Loss Level Exp");
+            outFS.println("Name FightStyle HitPoints Stamina Mana DodgeBlock LightPunch MediumPunch HeavyPunch PunchBlock LightKick MediumKick HeavyKick KickBlock LightMagic MediumMagic HeavyMagic MagicBlock Fights Win Draw Loss Level Exp");
             for(Hero c : heroList){
                 outFS.print(c.getName() + " " + c.getFightStyle() + " "
                         + c.getHitPoints() + " " + c.getStamina()

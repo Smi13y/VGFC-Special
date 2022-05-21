@@ -15,7 +15,7 @@ public class Hero {
 
     public Hero(String name){
         this.name = name;
-        this.fightStyle = styleList[Commands.roll(styleList.length)];
+        this.fightStyle = styleList[Commands.roll(styleList.length-1)];
 
         this.hitPoints = 30 + Commands.roll(25);
         this.tempHitpoints = hitPoints;

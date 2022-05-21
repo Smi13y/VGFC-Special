@@ -56,8 +56,8 @@ public class Battle {
                 while(roundTimer < roundMax && isFightOver(player1, player2)) {
                     roll = Commands.roll(10);
                     roundTimer = roundTimer + roll;
-                    //TimeUnit.SECONDS.sleep(roll); Commented out for testing
-                    TimeUnit.MILLISECONDS.sleep(roll);
+                    TimeUnit.SECONDS.sleep(roll); //Commented out for testing
+                    //TimeUnit.MILLISECONDS.sleep(roll);
                     timerPrint(roundTimer, roundMax);
                     damage(player1, player2);
                     if(isFightOver(player1, player2)){
