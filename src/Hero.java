@@ -10,12 +10,12 @@ public class Hero {
     private int hitPoints, tempHitpoints;
     private int stamina, tempStamina;
     private int mana, tempMana;
-    private String[] styleList = {" ", "Balance", "Boxer", "Kickboxer", "Magician", "MMA"};
+    private String[] styleList = {" ", "Balance", "Boxer", "Kickboxer", "Magician", "MMA", "BattleMage"};
     //removed titles for now
 
     public Hero(String name){
         this.name = name;
-        this.fightStyle = styleList[Commands.roll(5)];
+        this.fightStyle = styleList[Commands.roll(styleList.length)];
 
         this.hitPoints = 30 + Commands.roll(25);
         this.tempHitpoints = hitPoints;

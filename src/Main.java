@@ -41,7 +41,8 @@ public class Main {
         }
 
         Roster roster = new Roster();
-        //roster.exportFile(players);
+        //roster.exportFileCSV(players);
+        roster.exportFile(players);
         roster.loadFromFile();
         int m = 0;
         while(m < 10) {
@@ -50,8 +51,9 @@ public class Main {
                 Battle.match(roster.heroList.get(i), roster.heroList.get(roster.heroList.size() - (i + 1)), 180);
             }
             m++;
+            roster.exportFile(roster.heroList);
         }
-        roster.exportFile(roster.heroList);
+
 
     }
 }

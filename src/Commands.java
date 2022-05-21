@@ -337,6 +337,15 @@ public class Commands {
                     attackType = "Magic";
                 }
                 return attackType;
+            case "BattleMage":
+                if(rollValue < 5) {
+                    attackType = "Punch";
+                }else if(rollValue > 4 && rollValue < 8) {
+                    attackType = "Kick";
+                }else {
+                    attackType = "Magic";
+                }
+                return attackType;
 
         }
         return attackType;
