@@ -56,7 +56,8 @@ public class Battle {
                 while(roundTimer < roundMax && isFightOver(player1, player2)) {
                     roll = Commands.roll(10);
                     roundTimer = roundTimer + roll;
-                    TimeUnit.SECONDS.sleep(roll);
+                    //TimeUnit.SECONDS.sleep(roll); Commented out for testing
+                    TimeUnit.MILLISECONDS.sleep(roll);
                     timerPrint(roundTimer, roundMax);
                     damage(player1, player2);
                     if(isFightOver(player1, player2)){
@@ -141,7 +142,7 @@ public class Battle {
             case 1:
                 if(player.getExp() >= 5) {
                     player.setLevel(level + 1);
-                    System.out.println(player.getName() + " is now " + player.getLevel() + "!");
+                    System.out.println(player.getName() + " is now level " + player.getLevel() + "!");
                     levelUpStat(player);
                 } else{
                     System.out.println(player.getName() + " received " + exp + " exp!");
