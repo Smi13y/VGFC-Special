@@ -1,22 +1,35 @@
 import java.util.*;
 public class Main {
     public static void main(String[] args){
-        //Hero ryu = new Hero("Ryu", "Balance", 50, 50, 40, 5, new int[]{3, 3, 3, 3, 3, 3, 3, 3, 3,3,3,3}, 0 ,0 ,0, 0, 0);
-        //Hero ken = new Hero("Ken", "Balance", 50, 50, 40, 5, new int[]{3, 3, 3, 3, 3, 3, 3, 3, 3,3,3,3}, 0 ,0 ,0, 0, 0);
-        //ArrayList<Hero> players = new ArrayList<Hero>();
-        //players.add(ryu);
-        //players.add(ken);
-        //Battle.match(ryu, ken, 180);
+        String[] namesList = {"Scorpion" , "Sub-Zero", "LiuKang", "KungLao", "Raiden", "SonyaBlade", "JohnnyCage",
+                "Jax", "Baraka", "Kitana", "Jade", "Mileena", "TsangTsung", "ShaoKhan", "Goro", "Sheeva", "Sindel",
+                "Stryker", "Kintaro", "Kano", "NoobSaibot", "Nitara", "Ermac", "Kabal", "CassieCage", "D'Vorha",
+                "QuanChi", "Kenshi", "Cyrax", "KotalKhan", "ErronBlack", "Geras", "Shinnok", "NightWolf", "Bo'RaiCho",
+                "Cetrion", "Blaze", "Skarlet", "Onaga", "Motaro", "Daegon", "Smoke", "JacquiBriggs", "Reptile",
+                "Tremor", "Ashrah", "Fujin", "Havik", "Chameleon", "Khanmeleon", "Rain", "Sektor", "Frost", "Sareena",
+                "Jarek", "Kai", "Reiko", "Tanya", "Drahmin", "HsuHao", "LiMei", "Mavado", "Moloch", "Dairou", "Darrius",
+                "Hotaru", "Kira", "Kobra", "Shujinko", "Daegon", "Taven", "FerraTor", "KungJin", "Takeda", "Triborg",
+                "Kollector", "Kronika"};
+        String name;
+        ArrayList<Hero> players = new ArrayList<Hero>();
+
+
+        for(int i = 0; i < namesList.length - 1; i++){
+            name = namesList[i];
+            Hero newHero = new Hero(name);
+            players.add(newHero);
+        }
 
         Roster roster = new Roster();
-        //roster.exportFile(players);
+        roster.exportFile(players);
         roster.loadFromFile();
-        Battle.match(roster.heroList.get(0), roster.heroList.get(1), 180);
-        Battle.match(roster.heroList.get(0), roster.heroList.get(1), 180);
-        Battle.match(roster.heroList.get(0), roster.heroList.get(1), 180);
-        Battle.match(roster.heroList.get(0), roster.heroList.get(1), 180);
-        Battle.match(roster.heroList.get(0), roster.heroList.get(1), 180);
-
+        int m = 0;
+        while(m < 5) {
+            for (int i = 0; i < ((roster.heroList.size() + 1) / 2); i++) {
+                Battle.match(roster.heroList.get(i), roster.heroList.get(roster.heroList.size() - (i + 1)), 18);
+            }
+            m++;
+        }
         roster.exportFile(roster.heroList);
 
     }

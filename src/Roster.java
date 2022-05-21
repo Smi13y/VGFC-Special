@@ -12,9 +12,10 @@ public class Roster {
 
         Scanner inFS = null;
         FileInputStream fileByteStream = null;
-        int hitPoints, stamina, mana, dodgeBlock, win, loss, draw, level, exp;
+        int hitPoints, stamina, mana, dodgeBlock, fights, win, loss, draw, level, exp;
         String name, fightStyle;
         int[] statBlock = new int[12];
+        boolean alive;
 
         try{
             // open the File and set delimiters
@@ -47,13 +48,14 @@ public class Roster {
                 statBlock[10] = inFS.nextInt();
                 statBlock[11] = inFS.nextInt();
 
+                fights = inFS.nextInt();
                 win = inFS.nextInt();
                 draw = inFS.nextInt();
                 loss = inFS.nextInt();
                 level = inFS.nextInt();
                 exp = inFS.nextInt();
 
-                Hero hero = new Hero(name, fightStyle, hitPoints, stamina, mana, dodgeBlock, statBlock, win, draw, loss, level, exp);
+                Hero hero = new Hero(name, fightStyle, hitPoints, stamina, mana, dodgeBlock, statBlock, fights, win, draw, loss, level, exp);
                 //TO DO: instantiate an object of the Hero class
                 heroList.add(hero);
                 //TO DO: add object to the collection (heroList)
@@ -83,7 +85,7 @@ public class Roster {
                         + " " + c.getLightPunchAttack() + " " + c.getMediumPunchAttack() + " " + c.getHeavyPunchAttack() + " " + c.getPunchBlock()
                         + " " + c.getLightKickAttack() + " " + c.getMediumKickAttack() + " " + c.getHeavyKickAttack() + " " + c.getKickBlock()
                         + " " + c.getLightMagicAttack() + " " + c.getMediumMagicAttack() + " " + c.getHeavyMagicAttack() + " " + c.getMagicBlock()
-                        + " " + c.getWin() + " " + c.getDraw() + " " + c.getLoss()
+                        + " " + c.getFights() + " " + c.getWin() + " " + c.getDraw() + " " + c.getLoss()
                         + " " + c.getLevel() + " " + c.getExp() + "\n");
             }
 

@@ -110,6 +110,9 @@ public class Commands {
             System.out.println(player1.getName() + " misses!");
         }
 
+        System.out.println(player2.getName() + ": " + player2.getTempHitpoints() + "/" + player2.getHitPoints() + " HP");
+
+
     }
 
     //Determines how much damage is blocked or dodged

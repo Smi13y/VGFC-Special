@@ -3,15 +3,13 @@ public class Hero {
     private int lightPunchAttack, mediumPunchAttack, heavyPunchAttack, punchBlock;
     private int lightKickAttack, mediumKickAttack, heavyKickAttack, kickBlock;
     private int lightMagicAttack, mediumMagicAttack, heavyMagicAttack, magicBlock;
-    private int win, draw, loss;
+    private int fights, win, draw, loss;
     private int level, exp;
     private int dodgeBlock;
     private int[] statblock;
     private int hitPoints, tempHitpoints;
     private int stamina, tempStamina;
     private int mana, tempMana;
-    //TODO generate namesList
-    private String[] namesList;
     private String[] styleList = {" ", "Balance", "Boxer", "Kickboxer", "Magician", "MMA"};
     //removed titles for now
 
@@ -45,14 +43,16 @@ public class Hero {
         this.heavyMagicAttack = Commands.roll(5);
         this.magicBlock = Commands.roll(5);
 
-        this.win = win;
-        this.draw = draw;
-        this.loss = loss;
+        this.fights = 0;
+        this.win = 0;
+        this.draw = 0;
+        this.loss = 0;
 
         this.level = 1;
         this.exp = 0;
     }
-    public Hero(String name, String fightStyle, int hitPoints, int stamina, int mana,int dodgeBlock, int[] statblock, int win, int draw, int loss, int level, int exp) {
+
+    public Hero(String name, String fightStyle, int hitPoints, int stamina, int mana, int dodgeBlock, int[] statblock, int fights, int win, int draw, int loss, int level, int exp) {
         this.name = name;
         this.fightStyle = fightStyle;
         this.hitPoints = hitPoints;
@@ -78,6 +78,7 @@ public class Hero {
         heavyMagicAttack = statblock[10];
         magicBlock = statblock[11];
 
+        this.fights = fights;
         this.win = win;
         this.draw = draw;
         this.loss = loss;
@@ -303,6 +304,14 @@ public class Hero {
         this.exp = exp;
     }
 
+    public int getFights() {
+        return fights;
+    }
+
+    public void setFights(int fights) {
+        this.fights = fights;
+    }
+
     public String toString(){
         return "Name: " + name + "\nFight Style: " + fightStyle + "\nHP: " + hitPoints + "\tStamina: " + stamina + "\tMana: " + mana +
                 "\nPunch: " + lightPunchAttack + "-" + mediumPunchAttack + "-" + heavyPunchAttack + "-" + punchBlock +
@@ -310,6 +319,7 @@ public class Hero {
                 "\nMagic: " + lightMagicAttack + "-" + mediumMagicAttack + "-" + heavyMagicAttack + "-" + magicBlock +
                 "\nDodge/Block: " + dodgeBlock +
                 "\nLevel: " + level + " Exp: " + exp +
+                "\nFights: " + fights +
                 "\nW/D/L: " + win + "-" + draw + "-" + loss;
 
     }

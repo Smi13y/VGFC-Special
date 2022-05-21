@@ -127,6 +127,11 @@ public class Battle {
             player2.setDraw(player2.getDraw()+1);
             checkLevelUp(player2, 3);
         }
+
+        player1.setFights(player1.getFights() + 1);
+        player2.setFights(player2.getFights() + 1);
+        System.out.println();
+
     }
     //checks if player levels up and then levels them up if so
     public static void checkLevelUp(Hero player, int exp){
