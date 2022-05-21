@@ -24,9 +24,10 @@ public class Main {
         roster.exportFile(players);
         roster.loadFromFile();
         int m = 0;
-        while(m < 5) {
+        while(m < 10) {
+            Collections.shuffle(roster.heroList);
             for (int i = 0; i < ((roster.heroList.size() + 1) / 2); i++) {
-                Battle.match(roster.heroList.get(i), roster.heroList.get(roster.heroList.size() - (i + 1)), 18);
+                Battle.match(roster.heroList.get(i), roster.heroList.get(roster.heroList.size() - (i + 1)), 180);
             }
             m++;
         }
