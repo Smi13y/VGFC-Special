@@ -79,7 +79,7 @@ public class Commands {
 
     //Roll a die with values 0-index inclusive
     public static int rollW0(int index){
-        rollValue = (int) (Math.random()*index)+1;
+        rollValue = (int) (Math.random()*index);
         return rollValue;
     }
 
